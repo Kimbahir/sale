@@ -34,30 +34,12 @@ class Sales():
 
         return d + timedelta(days=delta)
 
-        # if other_date is None:
-        #     delta = 6-self.current_date.weekday()
-        #     if self.today_is_sunday():
-        #         delta += 7
-        #     return self.current_date + timedelta(days=delta)
-        # else:
-        #     delta = 6-other_date.weekday()
-        #     if self.is_sunday(other_date):
-        #         delta += 7
-        #     return other_date + timedelta(days=delta)
-
-    def today_is_sunday(self):
-        """Returns if current day of class is a Sunday
+    def is_sunday(self, input_date=None):
+        """Returns true if date is a Sunday
 
         Returns:
             bool: True for Sunday, false for any other
         """
-
-        if self.current_date.weekday() == 6:
-            return True
-        else:
-            return False
-
-    def is_sunday(self, input_date=None):
         if input_date is None:
             input_date = self.current_date
 
@@ -67,6 +49,17 @@ class Sales():
             return False
 
     def is_second_sunday_of_month(self, other_date=None):
+        """Checks if the date is the second Sunday of month. Uses integer division to see how many 
+        full weeks have passed. Because we check if the day is a Sunday itself and returns False,
+        we can safely assume it is a Sunday when we do integer division. Just one whole week, and 
+        we know this is the second Sunday
+
+        Args:
+            other_date (date, optional): Optional for checking other dates than class initial. Defaults to None.
+
+        Returns:
+            bool: True for second Sunday, False for any other state
+        """
         d = self.current_date
         if other_date is not None:
             d = other_date
@@ -80,6 +73,15 @@ class Sales():
             return False
 
     def next_second_sunday(self, other_date=None):
+        """Returns the next second Sunday. Safely iterates forward a week at a time by 
+        initially jumping to next Sunday
+
+        Args:
+            other_date (date, optional): Optional for checking other dates than class initial. Defaults to None.
+
+        Returns:
+            date: Next second Sunday
+        """
         d = self.current_date
         if other_date is not None:
             d = other_date
