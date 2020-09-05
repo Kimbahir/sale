@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sale
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sale
+  template:
+    metadata:
+      labels:
+        app: sale
+    spec:
+      containers:
+      - name: sale
+        image: kimbahir sale:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sale 
+  namespace: default
+spec:
+  ports:
+  - name: http
+    targetPort: 8000
+    port: 80
+  selector:
+    app: sale
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sale
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+
+spec:
+  rules:
+  - host: sale.bahir.dk 
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: sale
+          servicePort: http

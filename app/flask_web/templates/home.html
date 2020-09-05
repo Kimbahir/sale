@@ -1,0 +1,21 @@
+{% extends "layout.html" %} {% block content %}
+<div class="row">
+    <pre> </pre>
+</div>
+<div class="jumbotron text-center">
+    <h1>When is the next Sale?!</h1>
+</div>
+<div class="row">
+
+    <div class="col">
+        <h3>{{ today|safe }}</h3>
+        <p>
+        <pre> </pre>
+        </p>
+        <p>
+            {{ message|safe }}
+        </p>
+    </div>
+
+</div>
+{% endblock content %}
