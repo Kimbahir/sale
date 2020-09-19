@@ -1,12 +1,20 @@
 import datetime
 from datetime import timedelta
-from flask import Flask, render_template, session, redirect, flash
+from flask import Flask, render_template, session, redirect, flash, request
 import logging
 import json
 from app.flask_web import app
 from app.sales import Sales
 
 logging.basicConfig(level=logging.DEBUG, format='%(levelname)s:\t%(message)s')
+
+
+@app.before_request
+def before_request():
+    if request.url.startswith('http://'):
+        url = request.url.replace('http://', 'https://', 1)
+        code = 301
+        return redirect(url, code=code)
 
 
 @app.route("/", methods=["GET"])
