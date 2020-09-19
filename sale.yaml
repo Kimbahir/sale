@@ -3,6 +3,12 @@ kind: Deployment
 metadata:
   name: sale
   namespace: default
+  labels:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/match-tag: "true"
+  annotations:
+    keel.sh/pollSchedule: "@every 1m"
 spec:
   replicas: 1
   selector:
@@ -16,6 +22,7 @@ spec:
       containers:
       - name: sale
         image: kimbahir/sale:latest
+        imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
