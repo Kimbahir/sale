@@ -2,3 +2,4 @@ pytest
 flask
 flask_wtf
 wtforms
+prometheus_flask_exporter
