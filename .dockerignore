@@ -1,0 +1,8 @@
+.github/*
+venv/*
+tests/*
+.gitignore
+.dockerignore
+LICENSE
+Dockerfile
+sale.yaml

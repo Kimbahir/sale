@@ -1,10 +1,8 @@
 FROM python:latest
-RUN mkdir -p /src
+LABEL AUTHOR "Kim Bahir Andersen, kim@bahir.dk"
 WORKDIR /src
-COPY ./requirements.txt .
-COPY ./run-flask.py .
-COPY ./app ./app/
-RUN pip install -r requirements.txt
-ENTRYPOINT [ "python" ]
+COPY . .
+RUN pip3 install -r requirements.txt
+ENTRYPOINT [ "python3" ]
 CMD ["run-flask.py"]
 EXPOSE 8000
