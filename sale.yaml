@@ -36,8 +36,7 @@ kind: Ingress
 metadata:
   name: sale
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   rules:
   - host: sale.bahir.dk 
